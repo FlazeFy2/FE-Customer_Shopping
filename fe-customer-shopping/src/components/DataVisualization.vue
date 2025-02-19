@@ -18,6 +18,14 @@
   const series_most_location = ref([])
   const labels_season_comparison = ref([])
   const series_season_comparison = ref([])
+  const labels_payment_method_comparison = ref([])
+  const series_payment_method_comparison = ref([])
+  const labels_shipping_type_comparison = ref([])
+  const series_shipping_type_comparison = ref([])
+  const labels_discount_applied_comparison = ref([])
+  const series_discount_applied_comparison = ref([])
+  const labels_frequency_of_purchases_comparison = ref([])
+  const series_frequency_of_purchases_comparison = ref([])
 
   onMounted(async () => {
     const filePath = "/src/assets/shopping_trends.csv" 
@@ -28,6 +36,10 @@
       const data_location = await readCsv(filePath,['Location'])
       const data_color = await readCsv(filePath,['Color'])
       const data_season = await readCsv(filePath,['Season'])
+      const data_payment_method = await readCsv(filePath,['Payment Method'])
+      const data_shipping_type = await readCsv(filePath,['Shipping Type'])
+      const data_discount_applied = await readCsv(filePath,['Discount Applied'])
+      const data_frequency_of_purchases = await readCsv(filePath,['Frequency of Purchases'])
 
       // Exploratory Data Analysis (EDA) - Pie Chart Gender Comparison
       const gender_comparison = countWordFrequencies(data_gender_raw['Gender'])
@@ -58,6 +70,26 @@
       const season_comparison = countWordFrequencies(data_season['Season'])
       labels_season_comparison.value = Object.keys(season_comparison)
       series_season_comparison.value = Object.values(season_comparison)
+
+      // Exploratory Data Analysis (EDA) - Pie Chart Payment Method Comparison
+      const payment_method_comparison = countWordFrequencies(data_payment_method['Payment Method'])
+      labels_payment_method_comparison.value = Object.keys(payment_method_comparison)
+      series_payment_method_comparison.value = Object.values(payment_method_comparison)
+
+      // Exploratory Data Analysis (EDA) - Pie Chart Shipping Type Comparison
+      const shipping_type_comparison = countWordFrequencies(data_shipping_type['Shipping Type'])
+      labels_shipping_type_comparison.value = Object.keys(shipping_type_comparison)
+      series_shipping_type_comparison.value = Object.values(shipping_type_comparison)
+
+      // Exploratory Data Analysis (EDA) - Pie Chart Discount Applied Comparison
+      const discount_applied_comparison = countWordFrequencies(data_discount_applied['Discount Applied'])
+      labels_discount_applied_comparison.value = Object.keys(discount_applied_comparison)
+      series_discount_applied_comparison.value = Object.values(discount_applied_comparison)
+
+      // Exploratory Data Analysis (EDA) - Pie Chart Frequency of Purchases
+      const frequency_of_purchases_comparison = countWordFrequencies(data_frequency_of_purchases['Frequency of Purchases'])
+      labels_frequency_of_purchases_comparison.value = Object.keys(frequency_of_purchases_comparison)
+      series_frequency_of_purchases_comparison.value = Object.values(frequency_of_purchases_comparison)
     } catch (error) {
       console.error("Failed to load CSV:", error)
     }
@@ -140,6 +172,58 @@
       :labels="labels_season_comparison" 
       second_title="Season Comparison" 
       content="This compare total customer purchase by its season"
+    />
+  </WelcomeItem>
+
+  <WelcomeItem>
+    <template #icon>
+      <DocumentationIcon />
+    </template>
+    <!-- Exploratory Data Analysis (EDA) - Pie Chart Payment Method Comparison -->
+    <O_PieChartComponent 
+      :series="series_payment_method_comparison" 
+      :labels="labels_payment_method_comparison" 
+      second_title="Payment Method Comparison" 
+      content="This compare total customer purchase by its Payment Method"
+    />
+  </WelcomeItem>
+
+  <WelcomeItem>
+    <template #icon>
+      <DocumentationIcon />
+    </template>
+    <!-- Exploratory Data Analysis (EDA) - Pie Chart Shipping Type Comparison -->
+    <O_PieChartComponent 
+      :series="series_shipping_type_comparison" 
+      :labels="labels_shipping_type_comparison" 
+      second_title="Shipping Type Comparison" 
+      content="This compare total customer purchase by its Shipping Type"
+    />
+  </WelcomeItem>
+
+  <WelcomeItem>
+    <template #icon>
+      <DocumentationIcon />
+    </template>
+    <!-- Exploratory Data Analysis (EDA) - Pie Chart Discount Applied Comparison -->
+    <O_PieChartComponent 
+      :series="series_discount_applied_comparison" 
+      :labels="labels_discount_applied_comparison" 
+      second_title="Discount Applied Comparison" 
+      content="This compare total customer purchase by its Discount Applied"
+    />
+  </WelcomeItem>
+
+  <WelcomeItem>
+    <template #icon>
+      <DocumentationIcon />
+    </template>
+    <!-- Exploratory Data Analysis (EDA) - Pie Chart Frequency of Purchases Comparison -->
+    <O_PieChartComponent 
+      :series="series_frequency_of_purchases_comparison" 
+      :labels="labels_frequency_of_purchases_comparison" 
+      second_title="Frequency of Purchases Comparison" 
+      content="This compare total customer purchase by its Frequency of Purchases"
     />
   </WelcomeItem>
 </template>
