@@ -1,9 +1,18 @@
 <template>
-    <A_TextComponent :second_title="second_title" />
-    <div id="chart">
-        <apexchart type="pie" :options="chartOptions" :series="series"></apexchart>
+    <div class="card">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div id="chart">
+                    <apexchart type="pie" :options="chartOptions" :series="series"></apexchart>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <A_TextComponent :second_title="second_title" />
+                <hr>
+                <A_TextComponent :content="content" />
+            </div>
+        </div>
     </div>
-    <A_TextComponent :content="content" />
 </template>
   
 <script>
@@ -40,6 +49,9 @@
                     width: 380,
                     type: "pie"
                 },
+                legend: {
+                    position: "bottom"
+                },
                 labels: this.labels,
                 responsive: [
                 {
@@ -48,9 +60,6 @@
                         chart: {
                             width: 200
                         },
-                        legend: {
-                            position: "bottom"
-                        }
                     }
                 }
                 ]
