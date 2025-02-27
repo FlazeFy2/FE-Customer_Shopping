@@ -5,6 +5,7 @@
   import { readCsv } from "@/utils/data_prepare"
   import { countWordFrequencies } from "@/utils/analyze"
   import O_PieChartComponent from "@/components/organisms/O_PieChartComponent.vue"
+  import TotalPurchaseItemPerCategoryAndRegion from "@/components/usecases/TotalPurchaseItemPerCategoryAndRegion.vue"
 
   const labels_gender_comparison = ref([])
   const series_gender_comparison = ref([])
@@ -225,6 +226,14 @@
       second_title="Frequency of Purchases Comparison" 
       content="This compare total customer purchase by its Frequency of Purchases"
     />
+  </WelcomeItem>
+
+  <WelcomeItem>
+    <template #icon>
+      <DocumentationIcon />
+    </template>
+    <!-- Exploratory Data Analysis (EDA) - Stacked Bar Chart Total Purchase Item and Category per Region -->
+    <TotalPurchaseItemPerCategoryAndRegion/>
   </WelcomeItem>
 </template>
 

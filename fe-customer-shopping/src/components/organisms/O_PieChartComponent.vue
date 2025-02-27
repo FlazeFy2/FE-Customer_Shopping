@@ -54,14 +54,14 @@
                 },
                 labels: this.labels,
                 responsive: [
-                {
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            width: 200
-                        },
+                    {
+                        breakpoint: 480,
+                        options: {
+                            chart: {
+                                width: 200
+                            },
+                        }
                     }
-                }
                 ]
             }
             }
