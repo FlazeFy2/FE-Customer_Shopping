@@ -8,6 +8,7 @@
   import TotalPurchaseItemPerCategoryAndRegion from "@/components/usecases/TotalPurchaseItemPerCategoryAndRegion.vue"
   import TotalPurchaseItemPerCategoryAndAgeGroup from "@/components/usecases/TotalPurchaseItemPerCategoryAndAgeGroup.vue"
   import TotalPurchaseItemPerCategoryAndRatingCategory from "@/components/usecases/TotalPurchaseItemPerCategoryAndRatingCategory.vue"
+  import TotalPurchaseItemPerGroupAndContext from "@/components/usecases/TotalPurchaseItemPerGroupAndContext.vue"
 
   const labels_gender_comparison = ref([])
   const series_gender_comparison = ref([])
@@ -252,6 +253,75 @@
     </template>
     <!-- Exploratory Data Analysis (EDA) - Stacked Bar Chart Total Purchase Item and Category per Age Group -->
     <TotalPurchaseItemPerCategoryAndAgeGroup/>
+  </WelcomeItem>
+
+  <WelcomeItem>
+    <template #icon>
+      <DocumentationIcon />
+    </template>
+    <!-- Exploratory Data Analysis (EDA) - Stacked Bar Chart Total Purchase Item Per Category By Its Season -->
+    <TotalPurchaseItemPerGroupAndContext
+      second_title="Total Purchase Item Per Category By Its Season" 
+      content="This chart shows the total purchase item group by its season and category"
+      count_col="Season"
+      group_col="Category"
+    />
+  </WelcomeItem>
+
+  <WelcomeItem>
+    <template #icon>
+      <DocumentationIcon />
+    </template>
+    <!-- Exploratory Data Analysis (EDA) - Stacked Bar Chart Total Purchase Item Per Category By Its Location -->
+    <TotalPurchaseItemPerGroupAndContext
+      second_title="Total Purchase Item Per Category By Its Location" 
+      content="This chart shows the total purchase item group by its location and category"
+      count_col="Location"
+      group_col="Category"
+      limit=7
+    />
+  </WelcomeItem>
+
+  <WelcomeItem>
+    <template #icon>
+      <DocumentationIcon />
+    </template>
+    <!-- Exploratory Data Analysis (EDA) - Stacked Bar Chart Total Purchase Item Per Category By Its Payment Method -->
+    <TotalPurchaseItemPerGroupAndContext
+      second_title="Total Purchase Item Per Category By Its Payment Method" 
+      content="This chart shows the total purchase item group by its payment method and category"
+      count_col="Payment Method"
+      group_col="Category"
+      limit=7
+    />
+  </WelcomeItem>
+
+  <WelcomeItem>
+    <template #icon>
+      <DocumentationIcon />
+    </template>
+    <!-- Exploratory Data Analysis (EDA) - Stacked Bar Chart Total Purchase Item Per Category By Its Frequency of Purchases -->
+    <TotalPurchaseItemPerGroupAndContext
+      second_title="Total Purchase Item Per Category By Its Frequency of Purchases" 
+      content="This chart shows the total purchase item group by its frequency of purchases and category"
+      count_col="Frequency of Purchases"
+      group_col="Category"
+      limit=7
+    />
+  </WelcomeItem>
+
+  <WelcomeItem>
+    <template #icon>
+      <DocumentationIcon />
+    </template>
+    <!-- Exploratory Data Analysis (EDA) - Stacked Bar Chart Total Purchase Item Per Season By Its Color -->
+    <TotalPurchaseItemPerGroupAndContext
+      second_title="Total Purchase Item Per Season By Its Color" 
+      content="This chart shows the total purchase item group by its season and color"
+      count_col="Color"
+      group_col="Season"
+      limit=7
+    />
   </WelcomeItem>
 </template>
 
