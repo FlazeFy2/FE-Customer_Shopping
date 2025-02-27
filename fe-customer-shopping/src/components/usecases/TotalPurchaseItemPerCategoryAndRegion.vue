@@ -12,7 +12,6 @@
     import O_ColumnChartComponent from "../organisms/O_ColumnChartComponent.vue"
     import { readCsv } from "@/utils/data_prepare"
 
-    const series_frequency_of_purchases_comparison = ref([])
     const chartData = ref([])
     const regions = {
         "West": ["Alaska", "California", "Hawaii", "Oregon", "Washington", "Nevada", "Idaho", "Montana", "Wyoming", "Utah", "Colorado","Arizona","New Mexico"],
