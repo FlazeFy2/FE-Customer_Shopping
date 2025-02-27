@@ -6,6 +6,7 @@
   import { countWordFrequencies } from "@/utils/analyze"
   import O_PieChartComponent from "@/components/organisms/O_PieChartComponent.vue"
   import TotalPurchaseItemPerCategoryAndRegion from "@/components/usecases/TotalPurchaseItemPerCategoryAndRegion.vue"
+  import TotalPurchaseItemPerCategoryAndAgeGroup from "@/components/usecases/TotalPurchaseItemPerCategoryAndAgeGroup.vue"
   import TotalPurchaseItemPerCategoryAndRatingCategory from "@/components/usecases/TotalPurchaseItemPerCategoryAndRatingCategory.vue"
 
   const labels_gender_comparison = ref([])
@@ -243,6 +244,14 @@
     </template>
     <!-- Exploratory Data Analysis (EDA) - Stacked Bar Chart Total Purchase Item and Category per Rating Category -->
     <TotalPurchaseItemPerCategoryAndRatingCategory/>
+  </WelcomeItem>
+
+  <WelcomeItem>
+    <template #icon>
+      <DocumentationIcon />
+    </template>
+    <!-- Exploratory Data Analysis (EDA) - Stacked Bar Chart Total Purchase Item and Category per Age Group -->
+    <TotalPurchaseItemPerCategoryAndAgeGroup/>
   </WelcomeItem>
 </template>
 
