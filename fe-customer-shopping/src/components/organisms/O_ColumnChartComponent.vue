@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card mb-4">
         <div id="chart">
             <apexchart type="bar" :options="chartOptions" :series="series"></apexchart>
         </div>

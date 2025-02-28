@@ -3,6 +3,7 @@
   import { readBody, readHeader } from "@/utils/data_prepare"
   import O_TableComponent from "@/components/organisms/O_TableComponent.vue"
   import A_TextComponent from "@/components/atoms/A_TextComponent.vue"
+  import M_DescriptiveStatistic from "@/components/molecules/M_DescriptiveStatistic.vue"
 
   const header_dataset = ref([])
   const body_dataset = ref([])
@@ -40,6 +41,27 @@
     <A_TextComponent second_title="Source" />
     <a href="https://www.kaggle.com/datasets/bhadramohit/customer-shopping-latest-trends-dataset" target="_blank" rel="noopener">Kaggle</a>
     <a href="https://github.com/FlazeFy2/DS-Customer_Shopping" target="_blank" rel="noopener">Jupiter Notebook</a>
+    <hr>
+    <div class="d-flex justify-content-between">
+      <A_TextComponent second_title="Descriptive Statistic" />
+      <button class="btn btn-link rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDescriptiveStats" aria-expanded="false" aria-controls="collapseExample">Show Content</button>
+    </div>
+    <div class="collapse show ps-3" id="collapseDescriptiveStats">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+          <M_DescriptiveStatistic target_col="Age"/>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+          <M_DescriptiveStatistic target_col="Purchase Amount (USD)"/>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+          <M_DescriptiveStatistic target_col="Review Rating"/>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+          <M_DescriptiveStatistic target_col="Previous Purchases"/>
+        </div>
+      </div>
+    </div>
     <hr>
     <A_TextComponent second_title="Dataset" />
     <O_TableComponent 

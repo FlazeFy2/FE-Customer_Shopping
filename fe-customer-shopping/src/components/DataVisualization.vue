@@ -1,6 +1,4 @@
 <script setup>
-  import WelcomeItem from './WelcomeItem.vue'
-  import DocumentationIcon from './icons/IconDocumentation.vue'
   import { ref, onMounted } from "vue"
   import { readCsv } from "@/utils/data_prepare"
   import { countWordFrequencies } from "@/utils/analyze"
@@ -9,6 +7,7 @@
   import TotalPurchaseItemPerCategoryAndAgeGroup from "@/components/usecases/TotalPurchaseItemPerCategoryAndAgeGroup.vue"
   import TotalPurchaseItemPerCategoryAndRatingCategory from "@/components/usecases/TotalPurchaseItemPerCategoryAndRatingCategory.vue"
   import TotalPurchaseItemPerGroupAndContext from "@/components/usecases/TotalPurchaseItemPerGroupAndContext.vue"
+  import A_TextComponent from "@/components/atoms/A_TextComponent.vue"
 
   const labels_gender_comparison = ref([])
   const series_gender_comparison = ref([])
@@ -101,10 +100,11 @@
 </script>
 
 <template>
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
+  <div class="d-flex justify-content-between">
+    <A_TextComponent second_title="Pie Chart" />
+    <button class="btn btn-link rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePieStats" aria-expanded="false" aria-controls="collapseExample">Show Content</button>
+  </div>
+  <div class="collapse show ps-3" id="collapsePieStats">
     <!-- Exploratory Data Analysis (EDA) - Pie Chart Gender Comparison -->
     <O_PieChartComponent 
       :series="series_gender_comparison" 
@@ -112,12 +112,7 @@
       second_title="Gender Comparison" 
       content="This compare total customer purchase by its gender"
     />
-  </WelcomeItem>
 
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
     <!-- Exploratory Data Analysis (EDA) - Pie Chart Most 7 Item Purchased -->
     <O_PieChartComponent 
       :series="series_most_item_purchased" 
@@ -125,12 +120,7 @@
       second_title="7 Most Item Purchased" 
       content="This show 7 most purchased item on the market"
     />
-  </WelcomeItem>
 
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
     <!-- Exploratory Data Analysis (EDA) - Pie Chart Most 5 Category -->
     <O_PieChartComponent 
       :series="series_most_category" 
@@ -138,12 +128,7 @@
       second_title="7 Most Category" 
       content="This show 5 most category for purchased item on the market"
     />
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
+  
     <!-- Exploratory Data Analysis (EDA) - Pie Chart Most 7 Location -->
     <O_PieChartComponent 
       :series="series_most_location" 
@@ -151,12 +136,7 @@
       second_title="7 Most Location" 
       content="This show 7 most location for purchased item on the market"
     />
-  </WelcomeItem>
 
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
     <!-- Exploratory Data Analysis (EDA) - Pie Chart Most 7 Color -->
     <O_PieChartComponent 
       :series="series_most_color" 
@@ -164,12 +144,7 @@
       second_title="7 Most Color" 
       content="This show 7 most color for purchased item on the market"
     />
-  </WelcomeItem>
 
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
     <!-- Exploratory Data Analysis (EDA) - Pie Chart Season Comparison -->
     <O_PieChartComponent 
       :series="series_season_comparison" 
@@ -177,12 +152,7 @@
       second_title="Season Comparison" 
       content="This compare total customer purchase by its season"
     />
-  </WelcomeItem>
 
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
     <!-- Exploratory Data Analysis (EDA) - Pie Chart Payment Method Comparison -->
     <O_PieChartComponent 
       :series="series_payment_method_comparison" 
@@ -190,12 +160,7 @@
       second_title="Payment Method Comparison" 
       content="This compare total customer purchase by its Payment Method"
     />
-  </WelcomeItem>
 
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
     <!-- Exploratory Data Analysis (EDA) - Pie Chart Shipping Type Comparison -->
     <O_PieChartComponent 
       :series="series_shipping_type_comparison" 
@@ -203,12 +168,7 @@
       second_title="Shipping Type Comparison" 
       content="This compare total customer purchase by its Shipping Type"
     />
-  </WelcomeItem>
 
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
     <!-- Exploratory Data Analysis (EDA) - Pie Chart Discount Applied Comparison -->
     <O_PieChartComponent 
       :series="series_discount_applied_comparison" 
@@ -216,12 +176,7 @@
       second_title="Discount Applied Comparison" 
       content="This compare total customer purchase by its Discount Applied"
     />
-  </WelcomeItem>
 
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
     <!-- Exploratory Data Analysis (EDA) - Pie Chart Frequency of Purchases Comparison -->
     <O_PieChartComponent 
       :series="series_frequency_of_purchases_comparison" 
@@ -229,36 +184,21 @@
       second_title="Frequency of Purchases Comparison" 
       content="This compare total customer purchase by its Frequency of Purchases"
     />
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
+  </div>
+  <div class="d-flex justify-content-between">
+    <A_TextComponent second_title="Column Chart" />
+    <button class="btn btn-link rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#collapseColumnStats" aria-expanded="false" aria-controls="collapseExample">Show Content</button>
+  </div>
+  <div class="collapse show ps-3" id="collapseColumnStats">
     <!-- Exploratory Data Analysis (EDA) - Stacked Bar Chart Total Purchase Item and Category per Region -->
     <TotalPurchaseItemPerCategoryAndRegion/>
-  </WelcomeItem>
 
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
     <!-- Exploratory Data Analysis (EDA) - Stacked Bar Chart Total Purchase Item and Category per Rating Category -->
     <TotalPurchaseItemPerCategoryAndRatingCategory/>
-  </WelcomeItem>
 
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
     <!-- Exploratory Data Analysis (EDA) - Stacked Bar Chart Total Purchase Item and Category per Age Group -->
     <TotalPurchaseItemPerCategoryAndAgeGroup/>
-  </WelcomeItem>
 
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
     <!-- Exploratory Data Analysis (EDA) - Stacked Bar Chart Total Purchase Item Per Category By Its Season -->
     <TotalPurchaseItemPerGroupAndContext
       second_title="Total Purchase Item Per Category By Its Season" 
@@ -266,12 +206,7 @@
       count_col="Season"
       group_col="Category"
     />
-  </WelcomeItem>
 
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
     <!-- Exploratory Data Analysis (EDA) - Stacked Bar Chart Total Purchase Item Per Category By Its Location -->
     <TotalPurchaseItemPerGroupAndContext
       second_title="Total Purchase Item Per Category By Its Location" 
@@ -280,12 +215,7 @@
       group_col="Category"
       limit=7
     />
-  </WelcomeItem>
 
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
     <!-- Exploratory Data Analysis (EDA) - Stacked Bar Chart Total Purchase Item Per Category By Its Payment Method -->
     <TotalPurchaseItemPerGroupAndContext
       second_title="Total Purchase Item Per Category By Its Payment Method" 
@@ -294,12 +224,7 @@
       group_col="Category"
       limit=7
     />
-  </WelcomeItem>
 
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
     <!-- Exploratory Data Analysis (EDA) - Stacked Bar Chart Total Purchase Item Per Category By Its Frequency of Purchases -->
     <TotalPurchaseItemPerGroupAndContext
       second_title="Total Purchase Item Per Category By Its Frequency of Purchases" 
@@ -308,12 +233,7 @@
       group_col="Category"
       limit=7
     />
-  </WelcomeItem>
 
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
     <!-- Exploratory Data Analysis (EDA) - Stacked Bar Chart Total Purchase Item Per Season By Its Color -->
     <TotalPurchaseItemPerGroupAndContext
       second_title="Total Purchase Item Per Season By Its Color" 
@@ -322,7 +242,7 @@
       group_col="Season"
       limit=7
     />
-  </WelcomeItem>
+  </div>
 </template>
 
 
