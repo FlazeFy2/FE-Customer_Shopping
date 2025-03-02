@@ -3,6 +3,7 @@
   import { readCsv } from "@/utils/data_prepare"
   import { countWordFrequencies } from "@/utils/analyze"
   import O_PieChartComponent from "@/components/organisms/O_PieChartComponent.vue"
+  import O_TreeMapComponent from "@/components/organisms/O_TreeMapComponent.vue"
   import TotalPurchaseItemPerCategoryAndRegion from "@/components/usecases/TotalPurchaseItemPerCategoryAndRegion.vue"
   import TotalPurchaseItemPerCategoryAndAgeGroup from "@/components/usecases/TotalPurchaseItemPerCategoryAndAgeGroup.vue"
   import TotalPurchaseItemPerCategoryAndRatingCategory from "@/components/usecases/TotalPurchaseItemPerCategoryAndRatingCategory.vue"
@@ -29,6 +30,9 @@
   const series_discount_applied_comparison = ref([])
   const labels_frequency_of_purchases_comparison = ref([])
   const series_frequency_of_purchases_comparison = ref([])
+  const series_most_location_tree = ref([])
+  const series_most_color_tree = ref([])
+  const series_most_item_tree = ref([])
 
   onMounted(async () => {
     const filePath = "/src/assets/shopping_trends.csv" 
@@ -54,8 +58,8 @@
       labels_most_item_purchased.value = Object.keys(most_item_purchased)
       series_most_item_purchased.value = Object.values(most_item_purchased)
 
-      // Exploratory Data Analysis (EDA) - Pie Chart 5 Most Category
-      const most_category = countWordFrequencies(data_category['Category'],5)
+      // Exploratory Data Analysis (EDA) - Pie Chart Category Comparison
+      const most_category = countWordFrequencies(data_category['Category'])
       labels_most_category.value = Object.keys(most_category)
       series_most_category.value = Object.values(most_category)
 
@@ -93,6 +97,39 @@
       const frequency_of_purchases_comparison = countWordFrequencies(data_frequency_of_purchases['Frequency of Purchases'])
       labels_frequency_of_purchases_comparison.value = Object.keys(frequency_of_purchases_comparison)
       series_frequency_of_purchases_comparison.value = Object.values(frequency_of_purchases_comparison)
+
+      // Exploratory Data Analysis (EDA) - Tree Map 20 Most Location
+      const most_location_tree = countWordFrequencies(data_location['Location'],20)
+      series_most_location_tree.value = [
+        {
+          data: Object.entries(most_location_tree).map(([key, value]) => ({
+            x: key,
+            y: value
+          }))
+        }
+      ]
+
+      // Exploratory Data Analysis (EDA) - Tree Map 20 Most Location
+      const most_color_tree = countWordFrequencies(data_color['Color'],20)
+      series_most_color_tree.value = [
+        {
+          data: Object.entries(most_color_tree).map(([key, value]) => ({
+            x: key,
+            y: value
+          }))
+        }
+      ]
+
+      // Exploratory Data Analysis (EDA) - Tree Map 20 Most Item Purchased
+      const most_item_tree = countWordFrequencies(data_item_purchased['Item Purchased'],20)
+      series_most_item_tree.value = [
+        {
+          data: Object.entries(most_item_tree).map(([key, value]) => ({
+            x: key,
+            y: value
+          }))
+        }
+      ]
     } catch (error) {
       console.error("Failed to load CSV:", error)
     }
@@ -100,6 +137,7 @@
 </script>
 
 <template>
+
   <div class="d-flex justify-content-between">
     <A_TextComponent second_title="Pie Chart" />
     <button class="btn btn-link rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePieStats" aria-expanded="false" aria-controls="collapseExample">Show Content</button>
@@ -121,12 +159,12 @@
       content="This show 7 most purchased item on the market"
     />
 
-    <!-- Exploratory Data Analysis (EDA) - Pie Chart Most 5 Category -->
+    <!-- Exploratory Data Analysis (EDA) - Pie Chart Category Comparison -->
     <O_PieChartComponent 
       :series="series_most_category" 
       :labels="labels_most_category" 
-      second_title="7 Most Category" 
-      content="This show 5 most category for purchased item on the market"
+      second_title="Category Comparison" 
+      content="This show category comparison for purchased item on the market"
     />
   
     <!-- Exploratory Data Analysis (EDA) - Pie Chart Most 7 Location -->
@@ -185,11 +223,12 @@
       content="This compare total customer purchase by its Frequency of Purchases"
     />
   </div>
+
   <div class="d-flex justify-content-between">
     <A_TextComponent second_title="Column Chart" />
     <button class="btn btn-link rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#collapseColumnStats" aria-expanded="false" aria-controls="collapseExample">Show Content</button>
   </div>
-  <div class="collapse show ps-3" id="collapseColumnStats">
+  <div class="collapse ps-3" id="collapseColumnStats">
     <!-- Exploratory Data Analysis (EDA) - Stacked Bar Chart Total Purchase Item and Category per Region -->
     <TotalPurchaseItemPerCategoryAndRegion/>
 
@@ -241,6 +280,33 @@
       count_col="Color"
       group_col="Season"
       limit=7
+    />
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <A_TextComponent second_title="Tree Map" />
+    <button class="btn btn-link rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTreeStats" aria-expanded="false" aria-controls="collapseExample">Show Content</button>
+  </div>
+  <div class="collapse show ps-3" id="collapseTreeStats">
+    <!-- Exploratory Data Analysis (EDA) - Tree Map Most 20 Color -->
+    <O_TreeMapComponent 
+      :series="series_most_item_tree" 
+      second_title="20 Most Item Purchased" 
+      content="This show 20 most item purchased on the market"
+    />
+
+    <!-- Exploratory Data Analysis (EDA) - Tree Map Most 20 Location -->
+    <O_TreeMapComponent 
+      :series="series_most_location_tree" 
+      second_title="20 Most Location" 
+      content="This show 20 most location for purchased item on the market"
+    />
+
+    <!-- Exploratory Data Analysis (EDA) - Tree Map Most 20 Color -->
+    <O_TreeMapComponent 
+      :series="series_most_color_tree" 
+      second_title="20 Most Color" 
+      content="This show 20 most color for purchased item on the market"
     />
   </div>
 </template>

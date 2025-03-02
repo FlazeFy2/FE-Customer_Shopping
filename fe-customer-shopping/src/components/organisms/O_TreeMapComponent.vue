@@ -1,18 +1,18 @@
 <template>
     <div class="card mb-4">
         <div id="chart">
-            <apexchart type="bar" :options="chartOptions" :series="series"></apexchart>
+            <apexchart type="treemap" :options="chartOptions" :series="series"></apexchart>
         </div>
         <A_TextComponent :second_title="second_title" />
         <hr>
         <A_TextComponent :content="content" />
     </div>
 </template>
-
+  
 <script>
     import VueApexCharts from "vue3-apexcharts"
     import A_TextComponent from "@/components/atoms/A_TextComponent.vue"
-    
+
     export default {
         components: {
             apexchart: VueApexCharts,
@@ -20,10 +20,6 @@
         },
         props: {
             series: {
-                type: Array,
-                required: true
-            },
-            labels: {
                 type: Array,
                 required: true
             },
@@ -40,30 +36,23 @@
             chartOptions() {
                 return {
                     chart: {
-                        type: "bar",
-                        stacked: true,
-                        toolbar: {
-                            show: false
-                        }
-                    },
-                    plotOptions: {
-                        bar: {
-                            horizontal: false,
-                            columnWidth: "50%"
-                        }
-                    },
-                    xaxis: {
-                        categories: this.labels
+                        type: "treemap"
                     },
                     legend: {
-                        position: "bottom"
+                        show: false
                     },
+                    plotOptions: {
+                        treemap: {
+                            distributed: true,
+                            enableShades: true
+                        }
+                    }
                 }
             }
         }
     }
 </script>
-
+  
 <style scoped>
     #chart {
         width: 100%;
